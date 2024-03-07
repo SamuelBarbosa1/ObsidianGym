@@ -1,0 +1,43 @@
+import React, { useRef } from 'react'
+import './Join.css'
+import emailjs from "@emailjs/browser";
+
+const Join = () => {
+  const form = useRef();
+
+    const handleJoin = (e)=> {
+        e.preventDefault()
+        emailjs.sendForm(
+            'service_jqn5flv',
+            'template_5fbt3fr',
+            form.current,
+            'ddYcz13MvW01UFF5u'
+        )
+        .then((result)=>{
+            console.log('done')
+        },
+        (error)=>{
+            console.log(error)
+        }
+        )
+    }
+  return (
+   <><div className="Join" id='join-us'>
+          <div className="left-j">
+              <hr />
+              <div><span className='stroke-text'>Pronto para</span><span>Subir de nível</span></div>
+              <div><span>seu corpo</span><span className='stroke-text'>conosco?</span></div>
+          </div>
+          <div className="right-j">
+              <form className="email-container" netlify ref={form} onSubmit={handleJoin}>
+                  <input netlify type="email" name='user_email' placeholder='Insira seu e-mail' />
+                  <button type='submit' className="btn btn-j">Entrar</button>
+              </form>
+          </div>
+      </div>
+    
+    </>    
+  )
+}
+
+export default Join
